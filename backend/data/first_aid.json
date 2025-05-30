@@ -1,0 +1,30 @@
+{
+  "bleeding": {
+    "steps": [
+      "Apply pressure with a clean cloth.",
+      "Elevate the wounded area.",
+      "Do not remove embedded objects.",
+      "Call emergency services if bleeding is severe."
+    ]
+  },
+  "burn": {
+    "steps": [
+      "Cool the burn under running water for 20 minutes.",
+      "Cover with a sterile, non-stick dressing.",
+      "Do not apply creams or ice.",
+      "Seek medical attention for severe burns."
+    ]
+  },
+    "choking": {
+    "steps": [
+      "Bend the person forward at the waist and give 5 back blows between the shoulder blades with the heel of one hand.",
+      "Place a fist with the thumb side against the middle of the person's abdomen, just above the navel.",
+      "Cover your fist with your other hand.",
+      "Give 5 quick, upward abdominal thrusts.",
+      "Continue sets of 5 back blows and 5 abdominal thruts until the:",
+      "Object is forced out.",
+      "Person can cough forcefully or breathe.",
+      "Person becomes unconscious."
+    ]
+  }
+}
