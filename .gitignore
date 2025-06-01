@@ -1,0 +1,20 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules
+
+# Build generated files
+dist
+lib
+solution
+temp
+release
+
+# Visual Studio files
+.ntvs_analysis.dat
+.vs
+bin
+obj
