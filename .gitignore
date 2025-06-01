@@ -13,6 +13,12 @@ solution
 temp
 release
 
+# Coverage directory used by tools like istanbul
+coverage
+
+# OSX
+.DS_Store
+
 # Visual Studio files
 .ntvs_analysis.dat
 .vs
