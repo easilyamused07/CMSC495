@@ -37,12 +37,16 @@ npm start
 ### Execute Unit Tests
 
 ### Backend
-cd firt-aid-app
+```bash
+cd first-aid-app
 PYTHONPATH=. pytest backend/test/unit_tests
+```
 
 ### Frontend
+```bash
 cd frontend
 npm test
+```
 
 ## ✅ Features
 - Search for first aid instructions manually or using natural language.
