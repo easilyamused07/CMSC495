@@ -3,18 +3,21 @@ from flask_cors import CORS
 import json
 import requests
 import os
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["http://localhost:3000"])
+
 
 EXA_API_KEY = os.getenv("EXA_API_KEY")
 
 @app.route("/firstaid/<injury>", methods=["GET"])
 def get_first_aid(injury):
-    with open("data/first_aid.json") as f:
+    with open(os.path.join(BASE_DIR, "data", "first_aid.json")) as f:
         data = json.load(f)
     response = data.get(injury.lower(), {"steps": ["No information found for this injury."]})
     return jsonify(response)
