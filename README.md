@@ -19,12 +19,18 @@ A web-based assistant that helps users respond to injuries with first aid steps.
 
 ## 🚀 How to Run
 
+### Local LLM
+- Download and install Ollama
+- https://ollama.com/download
+- Run Ollama3.2
+- ollama run llama3.2
+
+
 ### Backend
 ```bash
 cd backend
 pip install -r requirements.txt
-# Add EXA_API_KEY to your .env file
-python main.py
+python localllm.py
 ```
 
 ### Frontend

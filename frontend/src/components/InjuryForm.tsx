@@ -4,6 +4,7 @@ import { parseWithAIOrFallback } from '../services/api.ts';
 const InjuryForm = () => {
   const [injury, setInjury] = useState('');
   const [steps, setSteps] = useState<string[]>([]);
+  const [llmOutput, setllmOutput] = useState("Waiting for data ...");
 
   const handleManualSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,6 +44,15 @@ const InjuryForm = () => {
       <ul className="list-disc list-inside mt-4">
         {steps.map((step, index) => <li key={index}>{step}</li>)}
       </ul>
+      <div
+        style={{
+          fontSize: "2rem",
+          padding: "2rem 0rem 0rem 2rem",
+          color: "black",
+        }}
+      >
+        Name: {llmOutput}
+      </div>
     </form>
   );
 };
