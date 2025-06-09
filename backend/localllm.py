@@ -10,6 +10,14 @@ import openai
 # Setup the OpenAI client to use either Azure, OpenAI.com, or Ollama API
 load_dotenv(override=True)
 API_HOST = os.getenv("API_HOST", "ollama")
+REQUIRED_ENV_VARS = ["OLLAMA_ENDPOINT", "OLLAMA_MODEL"]
+
+if API_HOST == "ollama":
+    for var in REQUIRED_ENV_VARS:
+        if var not in os.environ:
+            raise EnvironmentError(f"Missing required environment variable: {var}")
+
+API_HOST = os.getenv("API_HOST", "ollama")
 
 
 if API_HOST == "ollama":
@@ -108,5 +116,41 @@ def chatBot():
     #    print("Error during AI parsing:", e)
     #    return jsonify({"ai_output": ["AI parsing failed."]})
 
+@app.route('/api/chat', methods=['POST'])
+def chat_with_llama():
+    try:
+        data = request.get_json()
+        user_message = data.get("message", "").strip()
+
+        if not user_message:
+            return jsonify({"error": "Message cannot be empty."}), 400
+
+        local_messages = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": user_message}
+        ]
+
+        response = client.chat.completions.create(
+            model=MODEL_NAME,
+            messages=local_messages,
+            temperature=0.7,
+            max_tokens=400,
+            top_p=0.95,
+            frequency_penalty=0,
+            presence_penalty=0,
+            stream=True,
+        )
+
+        result = ""
+        for event in response:
+            if event.choices and event.choices[0].delta.content:
+                result += event.choices[0].delta.content
+
+        return jsonify({"response": result})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == "__main__":
     app.run(debug=True)
+
