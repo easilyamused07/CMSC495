@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { parseWithAIOrFallback } from '../services/api.ts';
 
+// This is the original form that was used with the Exa interactions and will be retained until deemed unnecessary
 const InjuryForm = () => {
   const [injury, setInjury] = useState('');
   const [steps, setSteps] = useState<string[]>([]);

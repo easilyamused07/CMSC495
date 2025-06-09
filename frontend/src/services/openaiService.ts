@@ -1,20 +1,6 @@
 // src/openaiService.js
 
-import axios from 'axios';
-
-//const API_KEY = 'YOUR_OPENAI_API_KEY';
-const API_KEY = 'noKeyNeeded';
-
-const openai = axios.create({
-  //baseURL: 'https://api.openai.com/v1',
-  //baseURL: 'http://localhost:11434/v1',
-  baseURL: 'http://127.0.0.1:5000',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${API_KEY}`,
-  },
-});
-
+// This function sends a fetch to the /completions route but needs to be updated to pull the model value from .env
 export const getOpenAIResponse = async (prompt) => {
 //   const response = await openai.post('/completions', {
 //     model: 'llama3.2',

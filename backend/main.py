@@ -5,6 +5,7 @@ import requests
 import os
 from dotenv import load_dotenv
 
+# This is our original main file and will be retained until deemed unnecessary after full testing of localllm.py
 load_dotenv()
 
 app = Flask(__name__)

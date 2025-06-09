@@ -4,6 +4,7 @@ from fastapi.responses import StreamingResponse
 import openai
 import time
 
+# This file is not currently in use but is being retained until testing is complete on localllm.py
 app = FastAPI()
 
 def get_openai_generator(prompt: str):
