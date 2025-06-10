@@ -24,3 +24,6 @@ coverage
 .vs
 bin
 obj
+
+#EXA_API KEY
+.env
