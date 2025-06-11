@@ -23,6 +23,7 @@ coverage
 .ntvs_analysis.dat
 .vs
 bin
-obj.env
+obj
+
 .env
 venv/

@@ -40,6 +40,20 @@ npm install
 npm start
 ```
 
+### Execute Unit Tests
+
+### Backend
+```bash
+cd first-aid-app
+PYTHONPATH=. pytest backend/test/unit_tests
+```
+
+### Frontend
+```bash
+cd frontend
+npm test
+```
+
 ## ✅ Features
 - Search for first aid instructions manually or using natural language.
 - AI parses injury descriptions via Exa and maps them to known first aid entries.
