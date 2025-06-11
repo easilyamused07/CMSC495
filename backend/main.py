@@ -7,6 +7,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 from dotenv import load_dotenv
 
+# This is our original main file and will be retained until deemed unnecessary after full testing of localllm.py
 load_dotenv()
 
 app = Flask(__name__)

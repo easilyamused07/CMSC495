@@ -1,3 +1,4 @@
+// This function handles the original parse action using Exa
 export async function parseWithAIOrFallback(input: string) {
   try {
     const aiRes = await fetch('/api/parse', {
