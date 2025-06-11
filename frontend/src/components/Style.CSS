@@ -1,0 +1,78 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin:0;
+}
+header{
+    width: 100%;
+    height: 100px;
+    background-color: hsl(0, 49%, 45%);
+    position: fixed;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+sidebar{
+    
+    width: 20%;
+    height: 100%;
+    background-color: #ffffff;
+    position: fixed;
+    float:left;
+    left: 0;
+    top: 70px;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);    
+}
+Disclaimer{
+    position: relative;
+    top: 400px;
+    left: 10px;
+    right: 0;
+}
+MainPanel{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: calc(80%);
+    padding: 20px;
+    margin-left: 180px;
+    margin-top: 100px;
+}
+Intro{
+    display:block;
+    text-align: center;
+    margin-top: 20px;
+    background-color:#e4b124;
+}
+Inputframe{
+    display:block;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #218aaa;
+}
+AIParse{
+    display:block;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #b172ce;
+}
+Outputframe{
+    display:block;
+    text-align: center;
+    overflow-y: auto;
+    background-color: #91636f;
+    margin-top: 60px;
+}
+footer{
+    display:block;
+    text-align: center;
+    background-color: #0d523d;
+    margin-top: 160px;
+}
