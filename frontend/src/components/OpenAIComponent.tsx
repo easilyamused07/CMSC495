@@ -1,17 +1,16 @@
-// src/components/OpenAIComponent.js
+// frontend/src/OpenAIComponent.tsx
 
 import React, { useState } from 'react';
 import { getOpenAIResponse } from '../services/openaiService.ts';
 
 const OpenAIComponent = () => {
-  const [input, setInput] = useState('');
+  const [prompt, setPrompt] = useState('');
   const [response, setResponse] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const aiResponse = await getOpenAIResponse(input);
+    const aiResponse = await getOpenAIResponse(prompt);
     setResponse(aiResponse ? aiResponse : 'Error');
-    //setResponse(aiResponse.choices[0].text);
   };
 
   return (
@@ -19,13 +18,11 @@ const OpenAIComponent = () => {
       <h1>OpenAI Integration with React</h1>
       <form onSubmit={handleSubmit}>
         <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          // rows="5"
-          // cols="50"
+          placeholder="Type your prompt here..."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
           rows={5}
           cols={50}
-          placeholder="Type your prompt here..."
         />
         <br />
         <button type="submit">Get Response</button>
