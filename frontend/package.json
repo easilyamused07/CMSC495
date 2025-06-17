@@ -10,6 +10,9 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "axios": "^1.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -23,8 +26,17 @@
     "@types/react-dom": "^18.2.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3"
+    "@testing-library/user-event": "^14.4.3",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.[jt]s?(x)",
