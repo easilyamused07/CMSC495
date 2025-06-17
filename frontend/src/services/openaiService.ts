@@ -3,16 +3,16 @@
 // This function sends a fetch to the /completions route but needs to be updated to pull the model value from .env
 export const getOpenAIResponse = async (prompt: string) => {
 //   const response = await openai.post('/completions', {
-//     model: 'llama3.2',
+//     model: 'llama3',
 //     prompt: prompt,
 //     max_tokens: 100,
 //   });
 //   return response.data;
 
   try {
-    console.log('Sending request:', prompt); 
-    
-    const aiRes = await fetch('/api/chat', {  
+    console.log('Sending request:', prompt);
+
+    const aiRes = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: prompt }),
@@ -33,13 +33,13 @@ export const getOpenAIResponse = async (prompt: string) => {
     // Return the response from our backend
     if (aiData && aiData.response) return aiData.response;
     if (aiData && aiData.error) return `Backend Error: ${aiData.error}`;
-    
+
     // Legacy support for classmates' original code structure:
     // if (aiData && aiData.ai_output) return aiData.ai_output;
     // if (aiData && aiData.data) return aiData.data;
-    
+
     return "No valid response received.";
-    
+
   } catch (err) {
     console.warn('Fail:', err);
     return "AI call failed.";

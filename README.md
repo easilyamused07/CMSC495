@@ -22,8 +22,8 @@ A web-based assistant that helps users respond to injuries with first aid steps.
 ### Local LLM
 - Download and install Ollama
 - https://ollama.com/download
-- Run Ollama3.2
-- ollama run llama3.2
+- Run Ollama3
+- ollama run llama3
 
 
 ### Backend
@@ -45,7 +45,7 @@ npm start
 ### Backend
 ```bash
 cd first-aid-app
-PYTHONPATH=. pytest backend/test/unit_tests
+PYTHONPATH=backend pytest backend/tests
 ```
 
 ### Frontend
