@@ -6,9 +6,28 @@ import os
 from dotenv import load_dotenv
 import openai
 
-# Setup the OpenAI client to use either Exa, OpenAI.com, or Ollama API
 load_dotenv(override=True)
 API_HOST = os.getenv("API_HOST", "ollama")
+
+
+def get_model_name():
+    model_name = os.getenv("OLLAMA_MODEL", "llama3")
+    if model_name != "llama3":
+        return "llama3"
+    return model_name
+
+MODEL_NAME = get_model_name()
+
+def is_first_aid_related(message: str) -> bool:
+    first_aid_keywords = [
+        "bleeding", "burn", "CPR", "choking", "cut", "emergency", "fracture", "first aid",
+        "unconscious", "rescue breathing", "allergic reaction", "sprain", "wound", "trauma",
+        "shock", "heart attack", "heat stroke", "hypothermia", "seizure"
+    ]
+    message_lower = message.lower()
+    return any(keyword in message_lower for keyword in first_aid_keywords)
+
+
 
 if API_HOST == "ollama":
     REQUIRED_ENV_VARS = ["OLLAMA_ENDPOINT", "OLLAMA_MODEL"]
@@ -117,7 +136,6 @@ def chatBot():
     #    print("Error during AI parsing:", e)
     #    return jsonify({"ai_output": ["AI parsing failed."]})
 
-# This is a variation of the /completions route and both must be tested
 @app.route('/api/chat', methods=['POST'])
 def chat_with_llama():
     try:
@@ -127,13 +145,20 @@ def chat_with_llama():
         if not user_message:
             return jsonify({"error": "Message cannot be empty."}), 400
 
+        if not is_first_aid_related(user_message):
+            return jsonify({
+                "response": "I'm a first aid assistant. Please ask about medical emergencies like burns, cuts, choking, CPR, injuries, or other health emergencies."
+            }), 200
+
+        model_name = get_model_name()
+
         local_messages = [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": user_message}
         ]
 
         response = client.chat.completions.create(
-            model=MODEL_NAME,
+            model=model_name,  
             messages=local_messages,
             temperature=0.7,
             max_tokens=400,
@@ -147,11 +172,13 @@ def chat_with_llama():
         for event in response:
             if event.choices and event.choices[0].delta.content:
                 result += event.choices[0].delta.content
-
+    
+        print("💬 AI Final Response:", result)
         return jsonify({"response": result})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
