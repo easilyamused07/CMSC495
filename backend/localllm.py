@@ -142,20 +142,24 @@ def chat_with_llama():
         data = request.get_json()
         user_message = data.get("message", "").strip()
 
+        try:
+            local_messages
+        except NameError:
+            # Initialize local_messages if it doesn't exist
+            local_messages = [
+                {"role": "system", "content": "You are a helpful assistant who provides first aid steps to answer questions about minor injuries."}
+            ]
+        
         if not user_message:
             return jsonify({"error": "Message cannot be empty."}), 400
 
-        if not is_first_aid_related(user_message):
-            return jsonify({
-                "response": "I'm a first aid assistant. Please ask about medical emergencies like burns, cuts, choking, CPR, injuries, or other health emergencies."
-            }), 200
+        local_messages.append({"role": "user", "content": user_message}) #Added
+        #if not is_first_aid_related(user_message):
+        #    return jsonify({
+        #        "response": "I'm a first aid assistant. Please ask about medical emergencies like burns, cuts, choking, CPR, injuries, or other health emergencies."
+        #    }), 200
 
         model_name = get_model_name()
-
-        local_messages = [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": user_message}
-        ]
 
         response = client.chat.completions.create(
             model=model_name,  
@@ -172,7 +176,8 @@ def chat_with_llama():
         for event in response:
             if event.choices and event.choices[0].delta.content:
                 result += event.choices[0].delta.content
-    
+
+        messages.append({"role": "assistant", "content": result})
         print("💬 AI Final Response:", result)
         return jsonify({"response": result})
 

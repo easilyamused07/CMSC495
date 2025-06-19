@@ -1,5 +1,5 @@
 import React from 'react';
-import InjuryForm from './components/InjuryForm.tsx';
+import InjuryForm from './components/InjuryForm_old.tsx';
 import OpenAIComponent from './components/OpenAIComponent.tsx';
 
 
